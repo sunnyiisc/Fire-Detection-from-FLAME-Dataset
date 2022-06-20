@@ -14,6 +14,7 @@ import tensorflow as tf
 # Importing Custom Modules
 from model_architectures import cnn_model
 from dataset_fetching import fetch_data_classification
+from data_plotting import training_plot
 
 ...
 def train_model(val_generator, train_generator, batchsize):
@@ -21,12 +22,16 @@ def train_model(val_generator, train_generator, batchsize):
     model.summary()
 
     # Compile the model
-    model.compile(optimizer=tf.keras.optimizers.Adam(1e-6),
+    model.compile(optimizer=tf.keras.optimizers.Adam(1e-5),
                   loss='binary_crossentropy',
                   metrics=['accuracy'])
 
     # Visualising model architecture
-    tf.keras.utils.plot_model(model, to_file='./fire_classification_output/cnn_model.png', show_shapes=True)
+    tf.keras.utils.plot_model(model,
+                              to_file='./fire_classification_output/cnn_model.pdf',
+                              show_shapes=True,
+                              show_layer_names=True,
+                              show_layer_activations=True)
     # display(Image.open('cnn_model.png'))
 
     # Saving Model Checkpoint
@@ -39,7 +44,7 @@ def train_model(val_generator, train_generator, batchsize):
                                                     save_freq='epoch')
 
     earlystop = tf.keras.callbacks.EarlyStopping(monitor='loss',
-                                                 min_delta=0.005,
+                                                 min_delta=0.05,
                                                  patience=2,
                                                  verbose=1,
                                                  mode='auto',
@@ -52,8 +57,8 @@ def train_model(val_generator, train_generator, batchsize):
                      batch_size=batchsize,
                      validation_data=val_generator,
                      verbose=1,
-                     #steps_per_epoch=(train_generator.samples)//batchsize,
-                     #validation_steps=(val_generator.samples)//batchsize,
+                     steps_per_epoch=(train_generator.samples)//batchsize,
+                     validation_steps=(val_generator.samples)//batchsize,
                      callbacks=[checkpoint, earlystop],
                      use_multiprocessing=True)
 
@@ -64,39 +69,13 @@ def train_model(val_generator, train_generator, batchsize):
     return model
 
 
-def training_plot(npy_path):
-    hist = np.load(npy_path, allow_pickle='TRUE').item()
-
-    print(hist.history.keys())
-    # Plot the model accuracy on training data
-    plt.subplot(2, 1, 1)
-    plt.plot(hist.history['accuracy'], '-o')
-    plt.plot(hist.history['val_accuracy'], '-x')
-    plt.legend(['Train Accuracy', 'Validation Accuracy'])
-    plt.title('Training/Validation Accuracy per Epoch')
-    plt.xlabel('Epoch')
-    plt.ylabel('acc')
-    plt.grid()
-    # Plot the model loss on training data
-    plt.subplot(2, 1, 2)
-    plt.plot(hist.history['loss'], '-o')
-    plt.plot(hist.history['val_loss'], '-x')
-    plt.legend(['Train Loss', 'Validation Loss'])
-    plt.title('Training/Validation Loss per Epoch')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
-    plt.grid()
-
-    plt.show()
-
-
 ## Main program
 # Fetching the dataset from the directory
 path = '/home/nrsc/Documents/AI-ML_training_2022-04/Project_SupanthaSen/Fire_vs_NoFire'
 val_generator, train_generator, test_generator = fetch_data_classification(path)
 
 # Training the model
-batchsize = 64
+batchsize = 32
 model = train_model(val_generator, train_generator, batchsize)
 
 # Plotting the Training Metrices

@@ -15,61 +15,15 @@ import tensorflow as tf
 
 # Importing Custom Modules
 from dataset_fetching import fetch_data_segmentation
+from data_plotting import data_visualize_segmentation, training_plot
 
 ...
-def data_visualize(data_gen):
-    img, msk = next(data_gen)
-
-    print('Image Shape:', img[0].shape)
-    print('Mask Shape:', msk[0].shape)
-
-    for i in range(img.shape[0] // 4):
-        # plt.subplot(img.shape[0], 2, (2*i)+1)
-        plt.subplot(2, img.shape[0] // 4, i + 1)
-        plt.imshow(img[i].astype(np.uint8))
-        plt.title('Fire Image')
-        plt.axis('off')
-
-        # plt.subplot(img.shape[0], 2, (2*i)+2)
-        plt.subplot(2, img.shape[0] // 4, i + 1 + (img.shape[0] // 4))
-        plt.imshow(msk[i].astype(np.uint8), cmap='gray')
-        plt.title('Mask Image')
-        plt.axis('off')
-    plt.show()
-
-
-def training_plot(npy_path):
-    hist = np.load(npy_path, allow_pickle='TRUE').item()
-
-    print(hist.keys())
-    # Plot the model accuracy on training data
-    plt.subplot(2, 1, 1)
-    plt.plot(hist['accuracy'], '-o')
-    plt.plot(hist['val_accuracy'], '-x')
-    plt.legend(['Train Accuracy', 'Validation Accuracy'])
-    plt.title('Training/Validation Accuracy per Epoch')
-    plt.xlabel('Epoch')
-    plt.ylabel('acc')
-    plt.grid()
-    # Plot the model loss on training data
-    plt.subplot(2, 1, 2)
-    plt.plot(hist['loss'], '-o')
-    plt.plot(hist['val_loss'], '-x')
-    plt.legend(['Train Loss', 'Validation Loss'])
-    plt.title('Training/Validation Loss per Epoch')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
-    plt.grid()
-
-    plt.show()
-
-
 ##Main Program
 path = '/home/nrsc/Documents/AI-ML_training_2022-04/Project_SupanthaSen/Fire_Segmentation'
 val_generator, train_generator = fetch_data_segmentation(path)
 
 #Visualising the Dataset
-data_visualize(train_generator)
+data_visualize_segmentation(train_generator)
 
 #Load Saved model
 model = tf.keras.models.load_model('./fire_segmentation_output/trained_model.h5')

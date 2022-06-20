@@ -21,7 +21,7 @@ def cnn_model():
     model.add(Rescaling(1. / 255, input_shape=(224, 224, 3)))
 
     # Convolutional layer and maxpool layer 1
-    model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)))
+    model.add(keras.layers.Conv2D(32, (3, 3), activation='relu'))
     model.add(keras.layers.MaxPool2D(2, 2))
 
     # Convolutional layer and maxpool layer 2

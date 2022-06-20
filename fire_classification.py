@@ -16,44 +16,6 @@ from sklearn.metrics import confusion_matrix, classification_report, ConfusionMa
 from dataset_fetching import fetch_data_classification
 
 ...
-def data_visualize(data_gen):
-    # Visualising the training set
-    img, lbl = next(data_gen)
-    for i in range(16):
-        plt.subplot(4, 4, i + 1)
-        plt.imshow(img[i].astype("uint8"))
-        # plt.title(lbl[i])
-        plt.title('Fire' if lbl[i] == 0 else 'No Fire')
-        plt.axis('off')
-    plt.show()
-
-
-def training_plot(npy_path):
-    hist = np.load(npy_path, allow_pickle='TRUE').item()
-
-    print(hist.keys())
-    # Plot the model accuracy on training data
-    plt.subplot(2, 1, 1)
-    plt.plot(hist['accuracy'], '-o')
-    plt.plot(hist['val_accuracy'], '-x')
-    plt.legend(['Train Accuracy', 'Validation Accuracy'])
-    plt.title('Training/Validation Accuracy per Epoch')
-    plt.xlabel('Epoch')
-    plt.ylabel('acc')
-    plt.grid()
-    # Plot the model loss on training data
-    plt.subplot(2, 1, 2)
-    plt.plot(hist['loss'], '-o')
-    plt.plot(hist['val_loss'], '-x')
-    plt.legend(['Train Loss', 'Validation Loss'])
-    plt.title('Training/Validation Loss per Epoch')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
-    plt.grid()
-
-    plt.show()
-
-
 ## Main program
 # Fetching the dataset from the directory
 path = '/home/nrsc/Documents/AI-ML_training_2022-04/Project_SupanthaSen/Fire_vs_NoFire'

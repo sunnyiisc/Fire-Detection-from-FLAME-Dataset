@@ -75,14 +75,12 @@ def fetch_data_segmentation(path):
     image_train_generator = datagen.flow_from_directory(path + '/Images_Dataset',
                                                         target_size=(512, 512),
                                                         color_mode='rgb',
-                                                        batch_size=32,
                                                         class_mode=None,
                                                         seed=100,
                                                         subset='training')
     mask_train_generator = datagen.flow_from_directory(path + '/Masks_Dataset',
                                                        target_size=(512, 512),
                                                        color_mode='grayscale',
-                                                       batch_size=32,
                                                        class_mode=None,
                                                        seed=100,
                                                        subset='training')
