@@ -22,7 +22,7 @@ def train_model(val_generator, train_generator, batchsize):
     model.summary()
 
     # Compile the model
-    model.compile(optimizer=tf.keras.optimizers.Adam(1e-5),
+    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=1e-6),
                   loss='binary_crossentropy',
                   metrics=['accuracy'])
 
@@ -44,7 +44,7 @@ def train_model(val_generator, train_generator, batchsize):
                                                     save_freq='epoch')
 
     earlystop = tf.keras.callbacks.EarlyStopping(monitor='loss',
-                                                 min_delta=0.05,
+                                                 min_delta=0.01,
                                                  patience=2,
                                                  verbose=1,
                                                  mode='auto',
@@ -57,8 +57,8 @@ def train_model(val_generator, train_generator, batchsize):
                      batch_size=batchsize,
                      validation_data=val_generator,
                      verbose=1,
-                     steps_per_epoch=(train_generator.samples)//batchsize,
-                     validation_steps=(val_generator.samples)//batchsize,
+                     #steps_per_epoch=(train_generator.samples)//batchsize,
+                     #validation_steps=(val_generator.samples)//batchsize,
                      callbacks=[checkpoint, earlystop],
                      use_multiprocessing=True)
 
@@ -75,7 +75,7 @@ path = '/home/nrsc/Documents/AI-ML_training_2022-04/Project_SupanthaSen/Fire_vs_
 val_generator, train_generator, test_generator = fetch_data_classification(path)
 
 # Training the model
-batchsize = 32
+batchsize = 256
 model = train_model(val_generator, train_generator, batchsize)
 
 # Plotting the Training Metrices
