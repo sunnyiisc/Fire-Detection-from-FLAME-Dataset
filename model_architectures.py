@@ -18,7 +18,7 @@ from tensorflow.keras.models import Model
 
 def cnn_model():
     model = keras.Sequential()
-    model.add(Rescaling(1. / 255, input_shape=(224, 224, 3)))
+    model.add(Rescaling(1./255, input_shape=(254, 254, 3)))
 
     # Convolutional layer and maxpool layer 1
     model.add(keras.layers.Conv2D(32, (3, 3), activation='relu'))
