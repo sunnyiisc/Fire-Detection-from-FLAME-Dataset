@@ -35,7 +35,7 @@ def data_visualize_segmentation(data_gen):
     print('Image Shape:', img[0].shape)
     print('Mask Shape:', msk[0].shape)
 
-    for i in range(img.shape[0] // 4):
+    for i in range(img.shape[0]//4):
         # plt.subplot(img.shape[0], 2, (2*i)+1)
         plt.subplot(2, img.shape[0] // 4, i + 1)
         plt.imshow(img[i].astype(np.uint8))
