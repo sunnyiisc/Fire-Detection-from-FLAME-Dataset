@@ -100,7 +100,7 @@ def fetch_data_segmentation(path):
                                                       target_size=(512, 512),
                                                       color_mode='rgb',
                                                       class_mode=None,
-                                                      #seed=100,
+                                                      seed=100,
                                                       shuffle=False,
                                                       subset='validation')
 
@@ -108,7 +108,7 @@ def fetch_data_segmentation(path):
                                                      target_size=(512, 512),
                                                      color_mode='grayscale',
                                                      class_mode=None,
-                                                     #seed=100,
+                                                     seed=100,
                                                      shuffle=False,
                                                      subset='validation')
 
@@ -119,14 +119,14 @@ def fetch_data_segmentation(path):
                                                         target_size=(512, 512),
                                                         color_mode='rgb',
                                                         class_mode=None,
-                                                        #seed=100,
+                                                        seed=100,
                                                         subset='training')
 
     mask_train_generator = datagen.flow_from_directory(path + '/Masks_Dataset',
                                                        target_size=(512, 512),
                                                        color_mode='grayscale',
                                                        class_mode=None,
-                                                       #seed=100,
+                                                       seed=100,
                                                        subset='training')
 
     train_generator = zip(image_train_generator, mask_train_generator)
