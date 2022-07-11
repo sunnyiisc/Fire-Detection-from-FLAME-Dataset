@@ -17,3 +17,7 @@ The downloaded dataset should be put into the folder structure as shown below:
 
 ## Training the Model
 
+Run the following python code for training the models:
+
+- Classification Training (classification_training.py) [click here](classification_training.py)
+- Segmentation Training (segmentation_training.py) [click here](segmentation_training.py)
