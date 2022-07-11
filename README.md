@@ -15,9 +15,30 @@ The downloaded dataset should be put into the folder structure as shown below:
 
 <img width="933" alt="Screenshot 2022-07-11 at 22 56 22" src="https://user-images.githubusercontent.com/47363228/178322597-768483fd-0633-4fe6-b6b7-e22b738c6f2d.png">
 
+## Dataset Visualization
+
+Classification Dataset with Labels:
+
+![fire_classification_data_visualization](https://user-images.githubusercontent.com/47363228/178327387-a1c39093-d52e-4977-94d8-5b4e13181bde.png)
+
+Segmentation Dataset with Mask (ground truth):
+
+![fire_segmentation_data_visualization](https://user-images.githubusercontent.com/47363228/178327708-02edbb70-c990-4b46-9d2c-a8a64a74b239.png)
+
+
 ## Training the Model
 
 Run the following python code for training the models:
 
 - Classification Training (classification_training.py) [click here](classification_training.py)
 - Segmentation Training (segmentation_training.py) [click here](segmentation_training.py)
+
+
+## Evalutation, Prediction and Training Plots:
+
+After training, run the following code to plot the dataset, evaluate the model, training metrices, model predictions.
+
+- Fire-vs-NoFire Classification (fire_classification.py) [click here](fire_classification.py)
+- Fire Segmentation (fire_segmentation.py) [click here](fire_segmentation.py)
+
+## 
