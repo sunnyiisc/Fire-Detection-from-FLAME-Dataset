@@ -8,14 +8,13 @@ Keras has an useful API which makes us easier to define the layers of our neural
 
 In addition to these a Rescaling layer is added to the model so that the image pixel values are re-scaled into 0-1 from 0-255. The complete CNN model used for the classification purpose as mentioned above is shown below:
 
-<!-- Figure -->
-
+[cnn_model.pdf](https://github.com/sunnyiisc/Fire-Detection-from-FLAME-Dataset/files/9086237/cnn_model.pdf)
 
 # Fire-Segmentation
 
 A few changes are made to this network to accommodate the FLAME dataset and adapt it to the nature of this problem. The ReLU activation function is changed to Exponential Linear Unit (ELU) of each two- dimensional convolutional layer to obtain more accurate results. The ELU function has a negative outcome smaller than a constant value for the negative input values and it exhibits a smoother behavior than the ReLU function. The structure of the customized U-Net is shown below. The backbone of the U-Net consists of a sequence of up-convolutions and concatenation with high-resolution features from the contracting path. 
 
-<!-- Figure -->
+[unet_model.pdf](https://github.com/sunnyiisc/Fire-Detection-from-FLAME-Dataset/files/9086244/unet_model.pdf)
 
 - The size of the input layer is $512 \times 512 \times 3$ designed to match the size of the inputs images and three RGB channels.
 - For computational convenience, the RGB values (between 0 and 255) are scaled down by 255 to yield float values between 0 and 1.
