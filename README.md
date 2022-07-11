@@ -11,3 +11,9 @@ There are two applications that can be defined based on the collected FLAME data
 
 ## Directory Structure of the Dataset
 
+The downloaded dataset should be put into the folder structure as shown below:
+
+<img width="933" alt="Screenshot 2022-07-11 at 22 56 22" src="https://user-images.githubusercontent.com/47363228/178322597-768483fd-0633-4fe6-b6b7-e22b738c6f2d.png">
+
+## Training the Model
+
