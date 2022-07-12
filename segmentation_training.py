@@ -23,7 +23,7 @@ def train_model(val_generator, train_generator, batchsize):
     model.summary()
 
     # Compile the model
-    model.compile(optimizer=tf.keras.optimizers.Adam(1e-3),
+    model.compile(optimizer=tf.keras.optimizers.Adam(1e-4),
                   loss='binary_crossentropy',
                   metrics=['accuracy'])
 
@@ -45,7 +45,7 @@ def train_model(val_generator, train_generator, batchsize):
                                                     save_freq='epoch')
 
     earlystop = tf.keras.callbacks.EarlyStopping(monitor='loss',
-                                                 min_delta=0.005,
+                                                 min_delta=0.0005,
                                                  patience=3,
                                                  verbose=1,
                                                  mode='auto',
