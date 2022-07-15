@@ -74,7 +74,7 @@ def train_model(val_generator, train_generator, batchsize):
 
 
 ##Main Program
-path = '/home/nrsc/Documents/AI-ML_training_2022-04/Project_SupanthaSen/Fire_Segmentation'
+path = './Fire_Segmentation'
 val_generator, train_generator = fetch_data_segmentation(path)
 
 # Training the model
