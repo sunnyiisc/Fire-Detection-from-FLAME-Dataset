@@ -19,7 +19,7 @@ from data_plotting import data_visualize_classification, training_plot
 ...
 ## Main program
 # Fetching the dataset from the directory
-path = '/home/nrsc/Documents/AI-ML_training_2022-04/Project_SupanthaSen/Fire_vs_NoFire'
+path = './Fire_vs_NoFire'
 val_generator, train_generator, test_generator = fetch_data_classification(path)
 
 #Visualising the Dataset
