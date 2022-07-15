@@ -20,7 +20,7 @@ from data_plotting import data_visualize_segmentation, training_plot
 
 ...
 ##Main Program
-path = '/home/nrsc/Documents/AI-ML_training_2022-04/Project_SupanthaSen/Fire_Segmentation'
+path = './Fire_Segmentation'
 val_generator, train_generator = fetch_data_segmentation(path)
 
 #Visualising the Dataset
